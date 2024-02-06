@@ -1042,7 +1042,7 @@ component displayname="QueryBuilder" accessors="true" {
             var table = raw( tableLikeSource.getSql() & " " & getGrammar().wrapTable( name ) );
         } else {
             var table = raw( getGrammar().wrapTable( "(#arguments.tableLikeSource.toSQL()#) #arguments.name#" ) );
-            mergeBindings( arguments.tableLikeSource );
+            addBindings( arguments.tableLikeSource.getBindings(), "join" );
         }
 
         return join(
